@@ -23,5 +23,7 @@
 
 	<mvc:annotation-driven/>
 	
+	<mvc:resources location="/asset/" mapping="/rs/**/"/>
+	
  
 </beans>
