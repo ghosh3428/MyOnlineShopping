@@ -14,6 +14,18 @@ public class FrontController
 		ModelAndView mv = new ModelAndView("page");
 		
 		mv.addObject("title","My Online Shopping");
+		mv.addObject("userclickhome" , true);
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="/aboutus")
+	public ModelAndView aboutus()
+	{
+		ModelAndView mv = new ModelAndView("page");
+		
+		mv.addObject("title","My Online Shopping");
+		mv.addObject("userclickaboutus",true);
 		
 		return mv;
 	}

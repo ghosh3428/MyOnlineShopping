@@ -5,6 +5,7 @@
 <spring:url var="css" value="/rs/css" />
 <spring:url var="js" value="/rs/js" />
 
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,12 +40,20 @@
     <%@include file="./shared/navbar.jsp" %>
 
     <!-- Page Content -->
-    <%@include file="home.jsp" %>
+    <c:if test="${userclickhome==true}">
+   		 <%@include file="home.jsp" %>
+    </c:if>
+    
+    <c:if test="${userclickaboutus==true}">
+   		 <%@include file="aboutus.jsp" %>
+    </c:if>
     <!-- /.container -->
 
 
         <!-- Footer -->
      <%@include file="./shared/footer.jsp" %>
+     
+     
 
 
     <!-- /.container -->

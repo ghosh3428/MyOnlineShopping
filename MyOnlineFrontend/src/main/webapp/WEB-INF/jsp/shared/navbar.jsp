@@ -8,17 +8,17 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Online Shopping</a>
+			<a class="navbar-brand" href="${contextRoot}/">Online Shopping</a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="#">About</a></li>
-				<li><a href="#">Services</a></li>
-				<li><a href="#">Contact</a></li>
-				<li><a href="#">All Product</a></li>
-				<li><a href="#">Manage Product</a></li>
+				<li><a href="${contextRoot}/aboutus">About</a></li>
+				<li><a href="${contextRoot}/service">Services</a></li>
+				<li><a href="${contextRoot}/contactus">Contact</a></li>
+				<li><a href="${contextRoot}/product/show/all/product">All Product</a></li>
+				<li><a href="${contextRoot}/manage/product">Manage Product</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="nav-item" id="signup"><a class="nav-link"
