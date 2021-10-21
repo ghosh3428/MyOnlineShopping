@@ -18,10 +18,16 @@
     <meta name="author" content="">
 
     <title> ${title} </title>
+    
+    <script>
+	window.contextRoot = '${contextRoot}';
+</script>
 
     <!-- Bootstrap Core CSS -->
     <link href="${css}/bootstrap.min.css" rel="stylesheet">
-
+    
+ 	<!-- Bootstrap Datatable CSS -->
+    <link href="${css}/dataTables.bootstrap.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="${css}/shop-homepage.css" rel="stylesheet">
 
@@ -47,6 +53,10 @@
     <c:if test="${userclickaboutus==true}">
    		 <%@include file="aboutus.jsp" %>
     </c:if>
+    
+      <c:if test="${userclickallproducts==true || userclickcategoryproducts==true}">
+   		 <%@include file="products.jsp" %>
+    </c:if>
     <!-- /.container -->
 
 
@@ -63,6 +73,15 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="${js}/bootstrap.min.js"></script>
+    
+     <!-- Datatable Core  -->
+    <script src="${js}/dataTables.bootstrap.js"></script>
+    
+    <!-- Datatable jquery JavaScript -->
+    <script src="${js}/jquery.dataTables.js"></script>
+    
+    <!-- custom JavaScript -->
+    <script src="${js}/myscript.js"></script>
 
 </body>
 
