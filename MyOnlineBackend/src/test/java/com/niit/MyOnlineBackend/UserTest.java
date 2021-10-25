@@ -31,7 +31,7 @@ public class UserTest
 	@Test
 	public void testAddUser()
 	{
-		/*
+		
 		user = new User();
 		user.setFirstName("Punkaj");
 		user.setLastName("Singh");
@@ -39,7 +39,7 @@ public class UserTest
 		user.setContactNumber("1234567890");
 		user.setRole("SUPPLIER");
 		user.setPassword("pass");
-		*/
+		assertEquals("Error",true,userDAO.addUser(user));
 		
 		user = new User();
 		user.setFirstName("Sumit Kumar");
@@ -48,7 +48,7 @@ public class UserTest
 		user.setContactNumber("1234567890");
 		user.setRole("SUPPLIER");
 		user.setPassword("pass");
-		
+		assertEquals("Error",true,userDAO.addUser(user));
 		/*
 		user = new User();
 		user.setFirstName("Niit");
@@ -57,12 +57,12 @@ public class UserTest
 		user.setContactNumber("1234567890");
 		user.setRole("ADMIN");
 		user.setPassword("admin12345");
-		*/
+		
 		
 		
 		
 		assertEquals("Error",true,userDAO.addUser(user));
-		
+		*/
 	}
 
 }

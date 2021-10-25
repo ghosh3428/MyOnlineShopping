@@ -28,7 +28,7 @@ public class CategoryTest
 	}
 	
 
-	/*
+	
 	@Test
 	public void testAddCategory()
 	{
@@ -40,7 +40,7 @@ public class CategoryTest
 		assertEquals("Error adding category",true,categoryDAO.addCategory(category));
 	}
 
-	*/
+	
 	/*
 	
 	@Test
@@ -76,11 +76,12 @@ public class CategoryTest
 	}
 	
 	*/
+	/*
 	@Test
 	public void testAddCategory()
 	{
 		assertEquals("Error",3,categoryDAO.categoryList().size());
 	}
-	
+	*/
 
 }

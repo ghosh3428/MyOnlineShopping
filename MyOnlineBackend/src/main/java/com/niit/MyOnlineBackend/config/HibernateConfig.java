@@ -19,11 +19,21 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class HibernateConfig 
 {
+	
 	private String DATABASE_URL      = "jdbc:h2:tcp://localhost/~/niit";
 	private String DATABASE_DRIVER   = "org.h2.Driver";
 	private String DATABASE_DIALECT  = "org.hibernate.dialect.H2Dialect";
 	private String DATABASE_USERNAME = "student";
 	private String DATABASE_PASSWORD = "";
+	
+	
+	/*
+	private String DATABASE_URL      = "jdbc:mysql://localhost:3306/niit";
+	private String DATABASE_DRIVER   = "com.mysql.cj.jdbc.Driver";
+	private String DATABASE_DIALECT  = "org.hibernate.dialect.MySQLDialect";
+	private String DATABASE_USERNAME = "root";
+	private String DATABASE_PASSWORD = "yourpassword";
+	*/
 	
 	@Bean
 	public DataSource getDataSource() 

@@ -8,7 +8,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<c:if test="${userclickallproducts == true}">
-					<script>
+						<script>
 							window.categoryId = '';
 						</script>
 						<ol class="breadcrumb">
@@ -42,18 +42,22 @@
 
 					<thead>
 						<tr>
+							<th></th>
 							<th>NAME</th>
 							<th>BRAND</th>
 							<th>UNIT PRICE</th>
 							<th>AVAILABLE QUANTITY</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tfoot>
 						<tr>
+							<th></th>
 							<th>NAME</th>
 							<th>BRAND</th>
 							<th>UNIT PRICE</th>
 							<th>AVAILABLE QUANTITY</th>
+							<th></th>
 						</tr>
 					</tfoot>
 
