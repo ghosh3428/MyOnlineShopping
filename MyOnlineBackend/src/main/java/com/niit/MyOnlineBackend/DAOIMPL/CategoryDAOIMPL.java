@@ -43,6 +43,7 @@ public class CategoryDAOIMPL implements CategoryDAO
 	{
 		try
 		{
+			category.setActive(true);
 			sessionFactory.getCurrentSession().persist(category);
 			return true;
 		}

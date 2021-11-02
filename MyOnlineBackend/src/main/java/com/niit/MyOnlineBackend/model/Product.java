@@ -1,5 +1,6 @@
 package com.niit.MyOnlineBackend.model;
 
+
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -8,6 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -15,23 +21,31 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name="MyOnline_Product")
 public class Product 
 {
+
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	private String code;
 	
+	@NotBlank(message="Product name cannot be left blank")
 	private String name;
 
+	@NotBlank(message="brand name cannot be left blank")
 	private String brand;
-
+	
+	@NotBlank(message="Product description cannot be left blank")
 	private String description;
 
+	@Min(value=0,message="Price cannot be less than zero")
 	@Column(name = "unit_price")
 	private double unitPrice;
 
+	@Min(value=0,message="Quantity cannot be less than zero")
 	private int quantity;
-	@JsonIgnore
+	
 	@Column(name = "is_active")
 	private boolean active;
 
@@ -149,6 +163,24 @@ public class Product
 	}
 	
 
+	@Transient
+	private MultipartFile file;
 
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+	
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", code=" + code + ", name=" + name + ", brand=" + brand + ", description="
+				+ description + ", unitPrice=" + unitPrice + ", quantity=" + quantity + ", active=" + active
+				+ ", categoryId=" + categoryId + ", supplierId=" + supplierId + ", purchases=" + purchases + ", views="
+				+ views + ", file=" + file + "]";
+	}
+	
 
 }
