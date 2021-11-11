@@ -36,4 +36,13 @@ public class FrontController
 		
 		return mv;
 	}
+	
+	@RequestMapping(value="/register")
+	public ModelAndView register()
+	{
+		ModelAndView mv = new ModelAndView("abc");
+		
+		
+		return mv;
+	}
 }
