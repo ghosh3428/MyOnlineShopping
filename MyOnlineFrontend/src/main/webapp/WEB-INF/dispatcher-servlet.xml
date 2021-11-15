@@ -38,7 +38,8 @@
 	</wf:flow-registry>
 
 	<wf:flow-builder-services id="flowBuilderServices"
-		view-factory-creator="viewFactoryCreator"  />
+		view-factory-creator="viewFactoryCreator"
+		validator ="validator"  />
 
 	<bean id="viewFactoryCreator"
 		class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
@@ -54,6 +55,8 @@
 		<property name="flowRegistry" ref="flowRegistry" />
 		<property name="order" value="-1" />
 	</bean>
-
+	
+<bean id="validator" 
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/> 
 
 </beans>
