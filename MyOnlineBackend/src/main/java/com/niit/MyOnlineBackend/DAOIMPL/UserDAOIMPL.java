@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.MyOnlineBackend.DAO.UserDAO;
 import com.niit.MyOnlineBackend.model.Address;
+import com.niit.MyOnlineBackend.model.Cart;
 import com.niit.MyOnlineBackend.model.User;
 
 
@@ -65,6 +66,21 @@ public class UserDAOIMPL implements UserDAO
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	@Override
+	public boolean updateCart(Cart cart) 
+	{
+		try 
+		{			
+			sessionFactory.getCurrentSession().update(cart);
+			return true;
+		}
+		catch(Exception ex) 
+		{		
+			ex.printStackTrace();
+			return false;	
+		}		
 	}
 
 }
