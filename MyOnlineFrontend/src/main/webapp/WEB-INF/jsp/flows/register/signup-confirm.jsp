@@ -14,16 +14,17 @@
 				<div class="card-body">
 					<div class="text-center">
 						<h3>
-							Name : <strong>Amit Kumar</strong>
+							Name : <strong>${registerModel.user.firstName}
+								${registerModel.user.lastName}</strong>
 						</h3>
 						<h4>
-							Email : <strong>am@gmail.com</strong>
+							Email : <strong>${registerModel.user.email}</strong>
 						</h4>
 						<h4>
-							Contact : <strong>1234567890</strong>
+							Contact : <strong>${registerModel.user.contactNumber}</strong>
 						</h4>
 						<h4>
-							Role : <strong>USER</strong>
+							Role : <strong>${registerModel.user.role}</strong>
 						</h4>
 						<p>
 							<a href="${flowExecutionUrl}&_eventId_personal"
@@ -47,12 +48,12 @@
 
 				<div class="card-body">
 					<div class="text-center">
-						<p><strong>Flat N0. 2</strong>,</p>
-						<p><strong>Abc Appartment</strong>,</p>
-						<p><strong>Kolkata</strong>-
-							<strong>700065</strong>,</p>
-						<p><strong>West Bengal</strong></p>
-						<p><strong>India</strong></p>
+						<p><strong>${registerModel.billing.addressLineOne},</strong></p>
+						<p><strong>${registerModel.billing.addressLineTwo},</strong></p>
+						<p><strong>${registerModel.billing.city}</strong>-
+							<strong>${registerModel.billing.postalCode},</strong></p>
+						<p><strong>${registerModel.billing.state}</strong></p>
+						<p><strong>${registerModel.billing.country}</strong></p>
 						<p>
 							<a href="${flowExecutionUrl}&_eventId_billing"
 								class="btn btn-primary">Edit</a>

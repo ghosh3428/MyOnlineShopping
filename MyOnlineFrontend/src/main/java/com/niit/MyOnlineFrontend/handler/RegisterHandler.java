@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.niit.MyOnlineBackend.DAO.UserDAO;
 import com.niit.MyOnlineBackend.model.Address;
+import com.niit.MyOnlineBackend.model.Cart;
 import com.niit.MyOnlineBackend.model.User;
 import com.niit.MyOnlineFrontend.model.RegisterModel;
 
@@ -58,5 +59,27 @@ public class RegisterHandler
 		}
 		
 		return tranResult;
+	}
+	
+	public String saveAll(RegisterModel registerModel) 
+	{
+		String transitionValue = "success";
+		
+		User user = registerModel.getUser();
+		if (user.getRole().equals("USER")) {
+			Cart cart = new Cart();
+			cart.setUser(user);
+			user.setCart(cart);
+		}
+		// save the user
+		userDAO.addUser(user);
+		
+		// save the billing address
+		Address billing = registerModel.getBilling();
+		billing.setUserId(user.getId());
+		billing.setBilling(true);
+		userDAO.addAddress(billing);
+		
+		return (transitionValue);
 	}
 }
