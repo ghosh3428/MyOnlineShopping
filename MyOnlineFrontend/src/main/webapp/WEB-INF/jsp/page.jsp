@@ -65,7 +65,9 @@
     <c:if test="${userclickmanageproduct==true }">
    		 <%@include file="manageproduct.jsp" %>
     </c:if>
-    
+    <c:if test="${userclickshowcart==true }">
+   		 <%@include file="cart.jsp" %>
+    </c:if>
     <!-- /.container -->
 
 
