@@ -72,13 +72,19 @@ $(function() {
 											+ data
 											+ '/product" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a> &#160;';
 
-									if (! row.role == 'ADMIN' ) {
-										if (row.quantity < 1) {
+									if ( userRole !== 'ADMIN' ) 
+									{
+										if (row.quantity < 1)
+										{
 											str += '<a href="javascript:void(0)" class="btn btn-warning disabled"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
-										} else {
+										} 
+										else 
+										{
 											str += '<a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
 										}
-									} else {
+									} 
+									else
+									{
 										str += '<a href="'
 											+ window.contextRoot
 											+ '/manage/'
