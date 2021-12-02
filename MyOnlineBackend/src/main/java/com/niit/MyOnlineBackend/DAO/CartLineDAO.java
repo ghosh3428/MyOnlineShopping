@@ -2,6 +2,9 @@ package com.niit.MyOnlineBackend.DAO;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.niit.MyOnlineBackend.model.Cart;
 import com.niit.MyOnlineBackend.model.Cartline;
 

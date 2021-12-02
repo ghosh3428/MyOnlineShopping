@@ -4,11 +4,14 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.MyOnlineBackend.DAO.CartLineDAO;
 import com.niit.MyOnlineBackend.model.Cart;
 import com.niit.MyOnlineBackend.model.Cartline;
-
+@Repository("cartLineDAO")
+@Transactional
 public class CartLineDAOIMPL implements CartLineDAO {
 
 	@Autowired
