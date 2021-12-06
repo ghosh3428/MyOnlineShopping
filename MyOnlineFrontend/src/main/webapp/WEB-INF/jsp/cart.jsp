@@ -62,7 +62,7 @@
 								${userModel.cart.grandTotal}/-</strong></td>
 					</tr>
 					<tr>
-						<td><a href="${contextRoot}/show/all/products"
+						<td><a href="${contextRoot}/product/show/all/products"
 							class="btn btn-warning"><i class="fa fa-angle-left"></i>
 								Continue Shopping</a></td>
 						<td colspan="2" class="hidden-xs"></td>

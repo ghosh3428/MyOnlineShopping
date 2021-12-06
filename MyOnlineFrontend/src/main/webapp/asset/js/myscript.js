@@ -80,7 +80,11 @@ $(function() {
 										} 
 										else 
 										{
-											str += '<a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+											str += '<a href="'
+												+ window.contextRoot
+												+ '/cart/add/'
+												+ data
+												+ '/product" class="btn btn-warning"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
 										}
 									} 
 									else
@@ -253,4 +257,42 @@ $(function() {
 				});
 	}
 
+	
+	
+	//CartHandler PAGE REFRESH
+	
+	$('button[name="refreshCart"]').click(function()
+			{
+		var cartLineId = $(this).attr('value');
+		
+		var countField = $('#count_' + cartLineId);
+		
+		var originalCount = countField.attr('value');
+		
+
+		var updatedCount = countField.val();
+		// do the checking only the count has changed
+		if(updatedCount != originalCount) 
+		{	
+			// check if the quantity is within the specified range
+			if(updatedCount < 1 || updatedCount > 5) 
+			{
+				// set the field back to the original field
+				countField.val(originalCount);
+				bootbox.alert({
+						size: 'medium',
+						title: 'Error',
+						message: 'Product Count should be minimum 1 and maximum 5!'
+				});
+			}
+			else 
+			{
+				// use the window.location.href property to send the request to the server
+				var updateUrl = window.contextRoot + '/cart/' + cartLineId + '/update?count=' + updatedCount;
+				window.location.href = updateUrl;
+			}
+		}
+		
+		
+});	
 });
