@@ -1,6 +1,7 @@
 package com.niit.MyOnlineBackend.model;
 
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -19,10 +20,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="MyOnline_Product")
-public class Product 
+public class Product implements Serializable 
 {
 
 
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

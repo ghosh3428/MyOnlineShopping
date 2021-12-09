@@ -1,5 +1,7 @@
 package com.niit.MyOnlineBackend.DAOIMPL;
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -81,6 +83,46 @@ public class UserDAOIMPL implements UserDAO
 			ex.printStackTrace();
 			return false;	
 		}		
+	}
+	
+	@Override
+	public List<Address> listShippingAddresses(int userId) 
+	{
+		String selectQuery = "FROM Address WHERE userId = :userId AND shipping = :isShipping ORDER BY id DESC";
+		return sessionFactory
+				.getCurrentSession()
+					.createQuery(selectQuery,Address.class)
+						.setParameter("userId", userId)
+						.setParameter("isShipping", true)
+							.getResultList();
+		
+	}
+
+	@Override
+	public Address getBillingAddress(int userId) {
+		String selectQuery = "FROM Address WHERE userId = :userId AND billing = :isBilling";
+		try{
+		return sessionFactory
+				.getCurrentSession()
+					.createQuery(selectQuery,Address.class)
+						.setParameter("userId", userId)
+						.setParameter("isBilling", true)
+						.getSingleResult();
+		}
+		catch(Exception ex) {
+			return null;
+		}
+	}
+	
+	@Override
+	public Address getAddress(int addressId) {
+		try {			
+			return sessionFactory.getCurrentSession().get(Address.class, addressId);			
+		}
+		catch(Exception ex) {
+			System.out.println(ex.getMessage());
+			return null;
+		}
 	}
 
 }
