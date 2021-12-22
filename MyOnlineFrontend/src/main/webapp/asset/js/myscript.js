@@ -227,16 +227,11 @@ $(function() {
 															if (confirmed) {
 																var activeurl = window.contextRoot
 																		+ '/manage/product/'
-																		+ checkbox
-																				.prop('value')
+																		+ checkbox.prop('value')
 																		+ '/activation';
-																$
-																		.post(
-																				activeurl,
-																				function(
-																						data) {
-																					bootbox
-																							.alert({
+																$.post(activeurl,function(data) 
+																		{
+																					bootbox.alert({
 																								size : 'medium',
 																								title : 'Information',
 																								message : data,

@@ -20,6 +20,8 @@
 		</on-entry>
 		<transition on="addressSelection" to="saveAddressSelection"
 			validate="false" />
+			<transition on="saveAddress" to="saveAddress"
+			validate="true" />
 	</view-state>
 
 	<action-state id="saveAddressSelection">
@@ -27,11 +29,16 @@
 			expression="checkoutHandler.saveAddressSelection(flowScope.checkoutModel, requestParameters.shippingId)" />
 		<transition on="success" to="payment" />
 	</action-state>
+	
+	<action-state id="saveAddress">
+		<evaluate
+			expression="checkoutHandler.saveAddress(flowScope.checkoutModel, shipping)" />
+		<transition on="success" to="payment" />
+	</action-state>
 
 	<!-- view the payment mode page -->
 	<view-state id="payment" view="flows/cart/checkout/checkout-payment"
 		model="flowScope.checkoutModel">
-
 		<transition on="pay" to="saveOrder" />
 	</view-state>
 	

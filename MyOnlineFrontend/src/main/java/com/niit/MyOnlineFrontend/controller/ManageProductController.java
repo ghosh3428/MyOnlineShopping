@@ -113,7 +113,7 @@ public class ManageProductController {
 		return "redirect:/manage/product?operation=category";
 	}
 
-	@RequestMapping(value = "/product/{id}/activation", method = RequestMethod.POST)
+	@RequestMapping(value = "/product/{id}/activation", method = {RequestMethod.POST })
 	@ResponseBody
 	public String handleProductAvtivation(@PathVariable int id) {
 		Product product = productDAO.getProduct(id);

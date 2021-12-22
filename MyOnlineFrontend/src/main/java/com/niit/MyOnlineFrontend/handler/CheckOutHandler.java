@@ -104,62 +104,83 @@ public class CheckOutHandler {
 		int orderCount = 0;
 		Product product = null;
 
-		for (Cartline cartLine : cartLines) {
+		try {
+			for (Cartline cartLine : cartLines) {
 
-			orderItem = new OrderItems();
+				orderItem = new OrderItems();
 
-			orderItem.setBuyingPrice(cartLine.getBuyingPrice());
-			orderItem.setProduct(cartLine.getProduct());
-			orderItem.setProductCount(cartLine.getProductCount());
-			orderItem.setTotal(cartLine.getTotal());
+				orderItem.setBuyingPrice(cartLine.getBuyingPrice());
+				orderItem.setProduct(cartLine.getProduct());
+				orderItem.setProductCount(cartLine.getProductCount());
+				orderItem.setTotal(cartLine.getTotal());
 
-			orderItem.setOrderDetail(orderDetail);
-			orderDetail.getOrderItems().add(orderItem);
+				orderItem.setOrderDetail(orderDetail);
+				orderDetail.getOrderItems().add(orderItem);
 
-			orderTotal += orderItem.getTotal();
-			orderCount++;
+				orderTotal += orderItem.getTotal();
+				orderCount++;
 
-			// update the product
-			// reduce the quantity of product
-			product = cartLine.getProduct();
-			product.setQuantity(product.getQuantity() - cartLine.getProductCount());
-			product.setPurchases(product.getPurchases() + cartLine.getProductCount());
-			productDAO.updateProduct(product);
+				// update the product
+				// reduce the quantity of product
+				product = cartLine.getProduct();
+				product.setQuantity(product.getQuantity() - cartLine.getProductCount());
+				product.setPurchases(product.getPurchases() + cartLine.getProductCount());
+				productDAO.updateProduct(product);
 
-			// delete the cartLine
-			cartLineDAO.remove(cartLine);
+				// delete the cartLine
+				cartLineDAO.remove(cartLine);
 
+			}
+
+			orderDetail.setOrderTotal(orderTotal);
+			orderDetail.setOrderCount(orderCount);
+			orderDetail.setOrderDate(new Date());
+
+			// save the order
+			cartLineDAO.addOrderDetail(orderDetail);
+
+			// set it to the orderDetails of checkoutModel
+			checkoutModel.setOrderDetail(orderDetail);
+
+			// add the cart details to cart history
+
+			// update the cart
+			Cart cart = checkoutModel.getCart();
+			cart.setGrandTotal(cart.getGrandTotal() - orderTotal);
+			cart.setCartLines(cart.getCartLines() - orderCount);
+			cartLineDAO.updateCart(cart);
+
+			// update the cart if its in the session
+
+			UserModel um = (UserModel) session.getAttribute("userModel");
+			if (um != null) {
+				um.setCart(cart);
+			}
+			return transitionValue;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return transitionValue;
 		}
 
-		orderDetail.setOrderTotal(orderTotal);
-		orderDetail.setOrderCount(orderCount);
-		orderDetail.setOrderDate(new Date());
-
-		// save the order
-		cartLineDAO.addOrderDetail(orderDetail);
-
-		// set it to the orderDetails of checkoutModel
-		checkoutModel.setOrderDetail(orderDetail);
-
-		// add the cart details to cart history
-
-		// update the cart
-		Cart cart = checkoutModel.getCart();
-		cart.setGrandTotal(cart.getGrandTotal() - orderTotal);
-		cart.setCartLines(cart.getCartLines() - orderCount);
-		cartLineDAO.updateCart(cart);
-
-		// update the cart if its in the session
-		UserModel userModel = (UserModel) session.getAttribute("userModel");
-		if (userModel != null) {
-			userModel.setCart(cart);
-		}
-
-		return "success";
 	}
 
 	public OrderDetails getOrderDetail(CheckoutModel checkoutModel) {
 		return checkoutModel.getOrderDetail();
 	}
 
+	public String saveAddress(CheckoutModel checkoutModel, Address shipping) {
+
+		String transitionValue = "success";
+
+		// set the user id
+		// set shipping as true
+		shipping.setUserId(checkoutModel.getUser().getId());
+		shipping.setShipping(true);
+		userDAO.addAddress(shipping);
+
+		// set the shipping id to flowScope object
+		checkoutModel.setShipping(shipping);
+
+		return transitionValue;
+	}
 }
